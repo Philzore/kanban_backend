@@ -6,7 +6,7 @@ class KanbanAdmin(admin.ModelAdmin):
     list_display = ('id','title','author',)
     
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('id','title','author', 'assigned_to')
+    list_display = ('id','title','author', 'assigned_to', 'assigned_channel', 'category')
 
 admin.site.register(Kanban, KanbanAdmin)
 admin.site.register(Task, TaskAdmin)

@@ -8,6 +8,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 class LoginView(ObtainAuthToken):
@@ -41,8 +42,28 @@ class RegisterView(APIView):
         new_user.save()
         return JsonResponse({'success': True})
 
-class BoardView():
-    pass
+class BoardView(APIView):
+    """
+    show the correct tasks for the active kanban channel
+    """
+    def get(self, request, channel_id):
+        pass
+
+class AddTaskView(APIView):
+    
+    def post(self, request, channel_id):
+        """
+        add new task to a specific channel
+        """
+        author = request.user
+        task_name = request.data.get('name')
+        task_assigned = request.data.get('assigned')
+        kanban_id = get_object_or_404(Kanban, id=channel_id)
+        new_task = Task.objects.create(title=task_name, author=author, assigned_to=task_assigned, assigned_channel=kanban_id)
+        new_task.save()
+        channel_tasks = Task.objects.filter(assigned_channel=channel_id)
+        serializer = TaskSerializer(channel_tasks, many=True)
+        return Response(serializer.data)
 
 class KanbanView(APIView):
     """

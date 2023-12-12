@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from kanban.views import LoginView, RegisterView , BoardView, KanbanView, AddKanbanChannelView
+from kanban.views import LoginView, RegisterView , BoardView, KanbanView, AddKanbanChannelView, AddTaskView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view()),
     path('register/', RegisterView.as_view()),
     path('board/', KanbanView.as_view()),
-    path('board/create_channel', AddKanbanChannelView.as_view()),
+    path('board/<int:channel_id>/', BoardView.as_view()),
+    path('board/create_channel/', AddKanbanChannelView.as_view()),
+    path('board/<int:channel_id>/add_task/', AddTaskView.as_view()),
 ]
