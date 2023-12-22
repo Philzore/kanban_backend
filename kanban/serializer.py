@@ -7,6 +7,7 @@ class KanbanSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class TaskSerializer(serializers.ModelSerializer):
+    author = serializers.ReadOnlyField(source='author.username')
     class Meta:
         model = Task
         fields = "__all__"

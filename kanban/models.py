@@ -12,7 +12,7 @@ class Kanban(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=20)
-    author = author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     assigned_to = models.CharField(max_length=20)
     category = models.CharField(max_length=20, choices=[
         ('to_do', 'to_do'),
