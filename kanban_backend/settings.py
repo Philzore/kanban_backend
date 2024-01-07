@@ -38,6 +38,7 @@ CORS_ALLOW_ORIGINS = ['http://localhost:4200', 'https://philipp-moessl.developer
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
