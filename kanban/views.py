@@ -18,7 +18,7 @@ class LoginView(ObtainAuthToken, APIView):
     def options(self, request, channel_id):
         # Implementing OPTIONS method for Preflight requests
         response = Response()
-        response["Access-Control-Allow-Origin"] = "https://philipp-moessl.developerakademie.net/kanban"  # Set the appropriate origin
+        response["Access-Control-Allow-Origin"] = "*"  # Set the appropriate origin
         response["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH, DELETE, OPTIONS"
         response["Access-Control-Allow-Headers"] = "accept, accept-encoding, authorization, content-type, dnt, origin, user-agent, x-csrftoken, x-requested-with"
         response["Access-Control-Allow-Credentials"] = "true"
