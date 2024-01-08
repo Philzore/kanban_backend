@@ -14,6 +14,16 @@ import json
 
 # Create your views here.
 class LoginView(ObtainAuthToken, APIView):
+
+    def options(self, request, channel_id):
+        # Implementing OPTIONS method for Preflight requests
+        response = Response()
+        response["Access-Control-Allow-Origin"] = "https://philipp-moessl.developerakademie.net"  # Set the appropriate origin
+        response["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+        response["Access-Control-Allow-Headers"] = "accept, accept-encoding, authorization, content-type, dnt, origin, user-agent, x-csrftoken, x-requested-with"
+        response["Access-Control-Allow-Credentials"] = "true"
+        return response
+    
     """
     login user
     """
@@ -98,7 +108,7 @@ class BoardView(APIView):
     def options(self, request, channel_id):
         # Implementing OPTIONS method for Preflight requests
         response = Response()
-        response["Access-Control-Allow-Origin"] = "http://localhost:4200"  # Set the appropriate origin
+        response["Access-Control-Allow-Origin"] = "https://philipp-moessl.developerakademie.net"  # Set the appropriate origin
         response["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH, DELETE, OPTIONS"
         response["Access-Control-Allow-Headers"] = "accept, accept-encoding, authorization, content-type, dnt, origin, user-agent, x-csrftoken, x-requested-with"
         response["Access-Control-Allow-Credentials"] = "true"
