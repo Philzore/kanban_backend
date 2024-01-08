@@ -100,8 +100,8 @@ class BoardView(APIView):
     def delete(self, request, channel_id):
         kanban = get_object_or_404(Kanban, id=channel_id)
         kanban.delete()
-
-        kanban_channels = Kanban.objects
+        author = request.user
+        kanban_channels = Kanban.objects.filter(author=author)
         serializer = KanbanSerializer(kanban_channels, many=True)
         return Response(serializer.data)
         
