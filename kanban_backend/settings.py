@@ -34,6 +34,27 @@ ALLOWED_HOSTS = [
 ]
 CORS_ALLOW_ORIGINS = ['http://localhost:4200', 'https://philipp-moessl.developerakademie.net']
 
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',  
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
 
 # Application definition
 
