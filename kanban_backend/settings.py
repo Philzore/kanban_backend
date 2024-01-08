@@ -32,7 +32,9 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'philzore.pythonanywhere.com'
 ]
-CORS_ALLOW_ORIGINS = True#['http://localhost:4200', 'https://philipp-moessl.developerakademie.net/kanban']
+#CORS_ALLOW_ORIGINS = True#['http://localhost:4200', 'https://philipp-moessl.developerakademie.net/kanban']
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_HEADERS = [
     'accept',
