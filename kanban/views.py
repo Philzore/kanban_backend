@@ -156,6 +156,6 @@ class AddKanbanChannelView(APIView):
         author = request.user
         new_channel = Kanban.objects.create(title=channel_name, author=author)
         new_channel.save()
-        kanban_channels = Kanban.objects
+        kanban_channels = Kanban.objects.filter(author=author)
         serializer = KanbanSerializer(kanban_channels, many=True)
         return Response(serializer.data)
