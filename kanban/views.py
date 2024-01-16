@@ -167,10 +167,15 @@ class EditTaskView(APIView):
     edit single task or delete
     """
     def patch(self, request, task_id):
+        task = get_object_or_404(Task, id= task_id)
+
         task_name = request.data.get('title')
         task_assigned = request.data.get('assigned_to')
-        filtered_task = Task.objects.filter(id= task_id)
-        filtered_task.update(title= task_name, assigned_to= task_assigned)
+
+        task.title = task_name
+        task.assigned_to = task_assigned
+        task.save()
+        
         return JsonResponse({'success': True})
     
     def delete(self, request, task_id):
