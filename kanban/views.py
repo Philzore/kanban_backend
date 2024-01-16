@@ -159,3 +159,16 @@ class AddKanbanChannelView(APIView):
         kanban_channels = Kanban.objects.filter(author=author)
         serializer = KanbanSerializer(kanban_channels, many=True)
         return Response(serializer.data)
+    
+class EditTaskView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    """
+    edit single task or delete
+    """
+    def patch(self, request, task_id):
+        task_name = request.data.get('title')
+        task_assigned = request.data.get('assigned_to')
+        filtered_task = Task.objects.filter(id= task_id)
+        filtered_task.update(title= task_name, assigned_to= task_assigned)
+        return JsonResponse({'success': True})
