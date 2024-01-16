@@ -182,8 +182,10 @@ class EditTaskView(APIView):
             return Response({'success': False})
     
     def delete(self, request, task_id):
-        task = get_object_or_404(Task, id=task_id)
-        task.delete()
-        taks = Task.objects.filter(assigned_channel=task_id)
-        serializer = TaskSerializer(taks, many= True)
-        return Response(serializer.data)
+        try:
+            task = get_object_or_404(Task, id=task_id)
+            task.delete()
+            taks = Task.objects.filter(assigned_channel = task_id)
+            return Response({'success' : True})
+        except Exception as e:
+            return Response({'success': False})
