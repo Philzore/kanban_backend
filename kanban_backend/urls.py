@@ -26,5 +26,5 @@ urlpatterns = [
     path('board/<int:channel_id>/', BoardView.as_view()),
     path('board/create_channel/', AddKanbanChannelView.as_view()),
     path('board/<int:channel_id>/add_task/', AddTaskView.as_view()),
-    path('edit_task/<int:task_id/', EditTaskView.as_view()),
+    path('edit_task/<int:task_id>/', EditTaskView.as_view()),
 ]
