@@ -172,3 +172,10 @@ class EditTaskView(APIView):
         filtered_task = Task.objects.filter(id= task_id)
         filtered_task.update(title= task_name, assigned_to= task_assigned)
         return JsonResponse({'success': True})
+    
+    def delete(self, request, task_id):
+        task = get_object_or_404(Task, id=task_id)
+        task.delete()
+        taks = Task.objects.filter(assigned_channel=task_id)
+        serializer = TaskSerializer(taks, many= True)
+        return Response(serializer.data)

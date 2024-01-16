@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from kanban.views import LoginView, RegisterView , BoardView, KanbanView, AddKanbanChannelView, AddTaskView
+from kanban.views import LoginView, RegisterView , BoardView, KanbanView, AddKanbanChannelView, AddTaskView, EditTaskView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('board/<int:channel_id>/', BoardView.as_view()),
     path('board/create_channel/', AddKanbanChannelView.as_view()),
     path('board/<int:channel_id>/add_task/', AddTaskView.as_view()),
+    path('edit_task/<int:task_id/', EditTaskView.as_view()),
 ]
